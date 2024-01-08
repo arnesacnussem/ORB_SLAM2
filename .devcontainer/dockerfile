@@ -1,0 +1,28 @@
+# sacnussem/devcontainer:orb_slam2
+FROM mcr.microsoft.com/devcontainers/base:focal
+
+RUN apt update
+
+RUN apt install -y build-essential libglew-dev libboost-dev libboost-thread-dev \
+    libboost-filesystem-dev ffmpeg libavcodec-dev libavutil-dev libavformat-dev \
+    libswscale-dev libpng-dev libeigen3-dev make cmake libgtk2.0-dev libavcodec-dev \
+    libavformat-dev libjpeg-dev libtiff5-dev libswscale-dev  libcanberra-gtk-module \
+    libcanberra-gtk3-module pkg-config
+
+RUN wget -qO /tmp/libjasper-dev.deb http://launchpadlibrarian.net/245417051/libjasper-dev_1.900.1-debian1-2.4ubuntu1_amd64.deb && \
+    wget -qO /tmp/libjasper1.deb http://launchpadlibrarian.net/245417065/libjasper1_1.900.1-debian1-2.4ubuntu1_amd64.deb && \
+    dpkg -i /tmp/libjasper1.deb && \
+    dpkg -i /tmp/libjasper-dev.deb && \
+    rm /tmp/libjasper*
+
+RUN wget -qO- https://github.com/stevenlovegrove/Pangolin/archive/refs/tags/v0.6.tar.gz | \
+    tar xvz -C /opt && \
+    cd /opt/Pangolin-0.6 && cmake . && make -j && make install
+
+RUN wget -qO- https://github.com/opencv/opencv/archive/refs/tags/3.4.5.tar.gz | \
+    tar xvz -C /opt && \
+    cd /opt/opencv-3.4.5 && \
+    mkdir build && cd build && \
+    cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local .. \
+    && make -j && make install
+

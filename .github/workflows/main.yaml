@@ -17,6 +17,7 @@ jobs:
           with:
             push: true
             tags: sacnussem/devcontainer:orb_slam2
+            context: '{{defaultContext}}:.devcontainer'
         - run: |
             npm install -g @devcontainers/cli
             devcontainer build --config prebuilt.json --workspace-folder . --push true --image-name sacnussem/devcontainer:orb_slam2-prebuilt

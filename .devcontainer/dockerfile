@@ -7,7 +7,7 @@ RUN apt install -y build-essential libglew-dev libboost-dev libboost-thread-dev 
     libboost-filesystem-dev ffmpeg libavcodec-dev libavutil-dev libavformat-dev \
     libswscale-dev libpng-dev libeigen3-dev make cmake libgtk2.0-dev libavcodec-dev \
     libavformat-dev libjpeg-dev libtiff5-dev libswscale-dev  libcanberra-gtk-module \
-    libcanberra-gtk3-module pkg-config 
+    libcanberra-gtk3-module pkg-config gdb
 
 RUN wget -qO /tmp/libjasper-dev.deb http://launchpadlibrarian.net/245417051/libjasper-dev_1.900.1-debian1-2.4ubuntu1_amd64.deb && \
     wget -qO /tmp/libjasper1.deb http://launchpadlibrarian.net/245417065/libjasper1_1.900.1-debian1-2.4ubuntu1_amd64.deb && \
